@@ -1,24 +1,24 @@
-﻿Dictionary<int, string> ciudades = new Dictionary<int, string>();
+﻿Dictionary<string, string> usuarios = new Dictionary<string, string>();
 
-for (int i = 1; i <= 5; i++)
+for (int i = 1; i <= 3; i++)
 {
-    Console.Write("Ingrese el código de la ciudad " + i + ": ");
-    int codigo = int.Parse(Console.ReadLine());
+    Console.Write("Ingrese nombre de usuario " + i + ": ");
+    string user = Console.ReadLine();
 
-    Console.Write("Ingrese el nombre de la ciudad " + i + ": ");
-    string nombre = Console.ReadLine();
+    Console.Write("Ingrese contraseña para " + user + ": ");
+    string pass = Console.ReadLine();
 
-    ciudades.Add(codigo, nombre);
+    usuarios.Add(user, pass);
 }
 
-Console.Write("\nIngrese el código de la ciudad que desea buscar: ");
-int buscar = int.Parse(Console.ReadLine());
+Console.Write("\nUsuario a consultar: ");
+string buscar = Console.ReadLine();
 
-if (ciudades.ContainsKey(buscar))
+if (usuarios.ContainsKey(buscar))
 {
-    Console.WriteLine("Ciudad encontrada: " + ciudades[buscar]);
+    Console.WriteLine("La contraseña es: " + usuarios[buscar]);
 }
 else
 {
-    Console.WriteLine("El código no existe.");
+    Console.WriteLine("Usuario no encontrado.");
 }
