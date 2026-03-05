@@ -1,36 +1,25 @@
-﻿Dictionary<int, string> estudiantes = new Dictionary<int, string>();
+﻿Dictionary<int, string> productos = new Dictionary<int, string>();
 
 for (int i = 1; i <= 3; i++)
 {
-    Console.Write("Ingrese ID del estudiante " + i + ": ");
-    int id = int.Parse(Console.ReadLine());
+    Console.Write("Ingrese el código del producto " + i + ": ");
+    int codigo = int.Parse(Console.ReadLine());
 
-    while (estudiantes.ContainsKey(id))
+    while (productos.ContainsKey(codigo))
     {
-        Console.WriteLine("Ese ID ya existe. Ingrese uno diferente.");
-        Console.Write("Ingrese ID del estudiante " + i + ": ");
-        id = int.Parse(Console.ReadLine());
+        Console.WriteLine("El código " + codigo + " ya existe. Ingrese uno diferente.");
+        Console.Write("Ingrese el código del producto " + i + ": ");
+        codigo = int.Parse(Console.ReadLine());
     }
 
-    Console.Write("Ingrese nombre del estudiante " + i + ": ");
+    Console.Write("Ingrese el nombre del producto " + i + ": ");
     string nombre = Console.ReadLine();
-    estudiantes.Add(id, nombre);
+
+    productos.Add(codigo, nombre);
 }
 
-Console.Write("\nIngrese el ID del estudiante que desea eliminar: ");
-int idAEliminar = int.Parse(Console.ReadLine());
-
-if (estudiantes.Remove(idAEliminar))
+Console.WriteLine("\nInventario completo:");
+foreach (var item in productos)
 {
-    Console.WriteLine("Registro eliminado correctamente.");
-}
-else
-{
-    Console.WriteLine("El ID no existe, no se pudo eliminar.");
-}
-
-Console.WriteLine("\nLista actualizada:");
-foreach (var item in estudiantes)
-{
-    Console.WriteLine("ID: " + item.Key + " - Nombre: " + item.Value);
+    Console.WriteLine("Código: " + item.Key + " - Producto: " + item.Value);
 }
