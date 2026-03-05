@@ -1,23 +1,24 @@
-﻿Dictionary<string, double> notas = new Dictionary<string, double>();
+﻿Dictionary<int, string> ciudades = new Dictionary<int, string>();
 
-for (int i = 1; i <= 3; i++)
+for (int i = 1; i <= 5; i++)
 {
-    Console.Write("Ingrese el nombre del estudiante " + i + ": ");
+    Console.Write("Ingrese el código de la ciudad " + i + ": ");
+    int codigo = int.Parse(Console.ReadLine());
+
+    Console.Write("Ingrese el nombre de la ciudad " + i + ": ");
     string nombre = Console.ReadLine();
 
-    Console.Write("Ingrese la nota de " + nombre + ": ");
-    double nota = double.Parse(Console.ReadLine());
-    notas.Add(nombre, nota);
+    ciudades.Add(codigo, nombre);
 }
 
-Console.Write("\nIngrese el nombre del estudiante que desea consultar: ");
-string buscar = Console.ReadLine();
+Console.Write("\nIngrese el código de la ciudad que desea buscar: ");
+int buscar = int.Parse(Console.ReadLine());
 
-if (notas.ContainsKey(buscar))
+if (ciudades.ContainsKey(buscar))
 {
-    Console.WriteLine("La nota de " + buscar + " es: " + notas[buscar]);
+    Console.WriteLine("Ciudad encontrada: " + ciudades[buscar]);
 }
 else
 {
-    Console.WriteLine("El estudiante no está registrado.");
+    Console.WriteLine("El código no existe.");
 }
