@@ -1,36 +1,66 @@
-﻿Dictionary<int, string> estudiantes = new Dictionary<int, string>();
+﻿Dictionary<int, string> empleados = new Dictionary<int, string>();
+int opcion = 0;
 
-for (int i = 1; i <= 3; i++)
+do
 {
-    Console.Write("Ingrese ID del estudiante " + i + ": ");
-    int id = int.Parse(Console.ReadLine());
+    Console.WriteLine("\n--- MENU DE EMPLEADOS ---");
+    Console.WriteLine("1. Ingresar empleado");
+    Console.WriteLine("2. Modificar el nombre del empleado");
+    Console.WriteLine("3. Ver empleados");
+    Console.WriteLine("4. Salir");
+    Console.Write("Seleccione una opcion: ");
+    opcion = int.Parse(Console.ReadLine());
 
-    while (estudiantes.ContainsKey(id))
+    switch (opcion)
     {
-        Console.WriteLine("Ese ID ya existe. Ingrese uno diferente.");
-        Console.Write("Ingrese ID del estudiante " + i + ": ");
-        id = int.Parse(Console.ReadLine());
+        case 1:
+            Console.Write("Ingrese ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            while (empleados.ContainsKey(id))
+            {
+                Console.WriteLine("Ese ID ya existe. Ingrese uno diferente.");
+                Console.Write("Ingrese ID: ");
+                id = int.Parse(Console.ReadLine());
+            }
+
+            Console.Write("Ingrese nombre: ");
+            string nombre = Console.ReadLine();
+            empleados.Add(id, nombre);
+            break;
+
+        case 2:
+            Console.Write("Ingrese el ID del empleado a modificar: ");
+            int idMod = int.Parse(Console.ReadLine());
+
+            if (empleados.ContainsKey(idMod))
+            {
+                Console.Write("Nuevo nombre: ");
+                string nuevoNombre = Console.ReadLine();
+                empleados[idMod] = nuevoNombre;
+                Console.WriteLine("Nombre actualizado.");
+            }
+            else
+            {
+                Console.WriteLine("El empleado no existe.");
+            }
+            break;
+
+        case 3:
+            Console.WriteLine("\n--- LISTA DE EMPLEADOS ---");
+            foreach (var item in empleados)
+            {
+                Console.WriteLine("ID: " + item.Key + " - Nombre: " + item.Value);
+            }
+            break;
+
+        case 4:
+            Console.WriteLine("Saliendo del programa...");
+            break;
+
+        default:
+            Console.WriteLine("Opcion no valida.");
+            break;
     }
 
-    Console.Write("Ingrese nombre del estudiante " + i + ": ");
-    string nombre = Console.ReadLine();
-    estudiantes.Add(id, nombre);
-}
-
-Console.Write("\nIngrese el ID del estudiante que desea eliminar: ");
-int idAEliminar = int.Parse(Console.ReadLine());
-
-if (estudiantes.Remove(idAEliminar))
-{
-    Console.WriteLine("Registro eliminado correctamente.");
-}
-else
-{
-    Console.WriteLine("El ID no existe, no se pudo eliminar.");
-}
-
-Console.WriteLine("\nLista actualizada:");
-foreach (var item in estudiantes)
-{
-    Console.WriteLine("ID: " + item.Key + " - Nombre: " + item.Value);
-}
+} while (opcion != 4);
