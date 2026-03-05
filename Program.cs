@@ -1,24 +1,36 @@
-﻿Dictionary<string, string> usuarios = new Dictionary<string, string>();
+﻿Dictionary<int, string> estudiantes = new Dictionary<int, string>();
 
 for (int i = 1; i <= 3; i++)
 {
-    Console.Write("Ingrese nombre de usuario " + i + ": ");
-    string user = Console.ReadLine();
+    Console.Write("Ingrese ID del estudiante " + i + ": ");
+    int id = int.Parse(Console.ReadLine());
 
-    Console.Write("Ingrese contraseña para " + user + ": ");
-    string pass = Console.ReadLine();
+    while (estudiantes.ContainsKey(id))
+    {
+        Console.WriteLine("Ese ID ya existe. Ingrese uno diferente.");
+        Console.Write("Ingrese ID del estudiante " + i + ": ");
+        id = int.Parse(Console.ReadLine());
+    }
 
-    usuarios.Add(user, pass);
+    Console.Write("Ingrese nombre del estudiante " + i + ": ");
+    string nombre = Console.ReadLine();
+    estudiantes.Add(id, nombre);
 }
 
-Console.Write("\nUsuario a consultar: ");
-string buscar = Console.ReadLine();
+Console.Write("\nIngrese el ID del estudiante que desea eliminar: ");
+int idAEliminar = int.Parse(Console.ReadLine());
 
-if (usuarios.ContainsKey(buscar))
+if (estudiantes.Remove(idAEliminar))
 {
-    Console.WriteLine("La contraseña es: " + usuarios[buscar]);
+    Console.WriteLine("Registro eliminado correctamente.");
 }
 else
 {
-    Console.WriteLine("Usuario no encontrado.");
+    Console.WriteLine("El ID no existe, no se pudo eliminar.");
+}
+
+Console.WriteLine("\nLista actualizada:");
+foreach (var item in estudiantes)
+{
+    Console.WriteLine("ID: " + item.Key + " - Nombre: " + item.Value);
 }
